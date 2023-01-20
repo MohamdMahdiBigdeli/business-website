@@ -1,0 +1,10 @@
+/BackEnd/venv
+/BackEnd/__pycache__
+/BackEnd/.idea
+/BackEnd/dao/__pycache__
+/BackEnd/controller/__pycache__
+/BackEnd/back/__pycache__
+/BackEnd/model/__pycache__
+
+/UI/node_modules
+/BackEnd/dao/*.laccdb
