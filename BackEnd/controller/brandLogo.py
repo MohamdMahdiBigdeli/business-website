@@ -3,7 +3,7 @@ from model import BrandLogo
 
 
 def brand_logo():
-    rows = connect_db('''SELECT * FROM team''')
+    rows = connect_db('''SELECT * FROM brand_logo''')
     data = []
     for row in rows:
         row = BrandLogo(row[0], row[1], row[2])

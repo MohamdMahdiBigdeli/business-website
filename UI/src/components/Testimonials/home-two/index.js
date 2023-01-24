@@ -1,15 +1,17 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Slider from "react-slick";
-import testimonialData from '../../../data/Testimonials/home-two'
+// import testimonialData from '../../../data/Testimonials/home-two'
 import quote from '../../../assets/img/icons/quote.png'
 import SectionTitle from "../../UI/SectionTitle";
+import axios from 'axios';
+import { base_URL } from "../../../helpers/BaseURL"
 
-const NextArrow = ({className, onClick}) => {
-    return <button className={className} onClick={onClick}><i className="fa fa-long-arrow-left"/></button>
+const NextArrow = ({ className, onClick }) => {
+    return <button className={className} onClick={onClick}><i className="fa fa-long-arrow-left" /></button>
 };
 
-const PrevArrow = ({className, onClick}) => {
-    return <button className={className} onClick={onClick}><i className="fa fa-long-arrow-right"/></button>
+const PrevArrow = ({ className, onClick }) => {
+    return <button className={className} onClick={onClick}><i className="fa fa-long-arrow-right" /></button>
 };
 
 class Testimonial extends Component {
@@ -17,19 +19,18 @@ class Testimonial extends Component {
         super(props);
         this.state = {
             nav1: null,
-            nav2: null
+            nav2: null,
+            TestimonialData: []
         };
     }
 
     componentDidMount() {
-
-
-
-
-
-
-
-        
+        // React.useEffect(() => {
+        const base_url = base_URL() + "testimonial-data/"
+        axios.get(base_url).then((Response) => {
+            this.setState({ TestimonialData: Response.data })
+        })
+        // })
         this.setState({
             nav1: this.slider1,
             nav2: this.slider2
@@ -42,8 +43,8 @@ class Testimonial extends Component {
             swipeToSlide: true,
             focusOnSelect: true,
             className: "testimonial-content--2",
-            nextArrow: <NextArrow/>,
-            prevArrow: <PrevArrow/>
+            nextArrow: <NextArrow />,
+            prevArrow: <PrevArrow />
         };
 
         return (
@@ -68,12 +69,12 @@ class Testimonial extends Component {
                                 className={`testimonial-thumbnail mt-sm-5 mt-md-1`}
                             >
                                 {
-                                    testimonialData.map(testimonial => (
+                                    this.state.TestimonialData.map(testimonial => (
                                         <div key={testimonial.id}>
                                             <div className="testimonial-thumbnail-item">
                                                 <img
                                                     src={require('../../../assets/img/' + testimonial.authorThumb)}
-                                                    alt="Businex-Testimonial"/>
+                                                    alt="Businex-Testimonial" />
                                             </div>
                                         </div>
                                     ))
@@ -98,11 +99,11 @@ class Testimonial extends Component {
                                         {...testSettings}
                                     >
                                         {
-                                            testimonialData.map(testiItem => (
+                                            this.state.TestimonialData.map(testiItem => (
                                                 <div key={testiItem.id}>
                                                     <div className="testimonial-item testimonial-item--2">
                                                         <div className="testimonial-txt">
-                                                            <img src={quote} alt="بیزنکس"/>
+                                                            <img src={quote} alt="بیزنکس" />
                                                             <p>{testiItem.quote}</p>
                                                             <h5 className="client-name">{testiItem.author} | <span
                                                                 className="designation">{testiItem.designation}</span>

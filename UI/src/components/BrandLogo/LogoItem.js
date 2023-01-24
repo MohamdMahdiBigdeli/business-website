@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 function LogoItem(props) {
+    console.log(props.URL)
     return (
         <div className="brand-logo-item">
             <Link to={`${process.env.PUBLIC_URL + props.URL}`}>

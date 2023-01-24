@@ -1,11 +1,20 @@
 import React from 'react';
 import SectionTitle from "../../UI/SectionTitle";
-
 import teamBg from '../../../assets/img/team/team-bg-2.jpg'
-import teamData from '../../../data/Team/home-two'
+// import teamData from '../../../data/Team/home-two'
 import TeamMember from "./member";
+import axios from 'axios';
+import { base_URL } from "../../../helpers/BaseURL"
 
 const Team = () => {
+    const base_url = base_URL() + "team-data/"
+    const [teamData, setTeamData] = React.useState([])
+    React.useEffect(() => {
+      axios.get(base_url).then((Response) => {
+        setTeamData(Response.data)
+      })
+    })
+
     return (
         <div className="team-area bg-brand">
             <div className="row no-gutters align-items-center">

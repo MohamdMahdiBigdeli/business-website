@@ -1,11 +1,20 @@
 import React from 'react';
 import SectionTitle from '../UI/SectionTitle'
 import ServiceItem from  './ServiceItem'
-import ServicesData from '../../data/Services/services'
-
+// import ServicesData from '../../data/Services/services'
 import serviceTopBg from '../../assets/img/service/service-bg.jpg'
+import axios from 'axios';
+import { base_URL } from "../../helpers/BaseURL"
 
 function Services({classes}) {
+    const base_url = base_URL() + "services-data/"
+    const [ServicesData, setServicesData] = React.useState([])
+    React.useEffect(() => {
+        axios.get(base_url).then((Response) => {
+            setServicesData(Response.data)
+        })
+    })
+
     return (
         <div className={`service-area-wrapper ${classes}`}>
             <div className="service-area-top" style={{backgroundImage: `url("${serviceTopBg}")`}}>

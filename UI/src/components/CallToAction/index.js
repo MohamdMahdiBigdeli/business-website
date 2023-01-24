@@ -1,26 +1,23 @@
 import React from 'react';
 import parse from 'html-react-parser'
-
-import CallToActionData from '../../data/CallToAction/call-to-action'
-import {Link} from "react-router-dom";
+// import CallToActionData from '../../data/CallToAction/call-to-action'
+import { Link } from "react-router-dom";
 import axios from 'axios';
-
-// const BaseUrl = "http://127.0.0.1:8000/CallToActionData/"
-// const Initialization_CallToActionData= {
-//     "title": "",
-//     "text": "",
-//     "btnText": "",
-//     "btnLink": ""
-// }
+import { base_URL } from "../../helpers/BaseURL"
 
 function CallToAction() {
-    // const [CallToActionData, setCallToActionData] = React.useState(Initialization_CallToActionData)
-    // React.useEffect(() => {
-    //     axios.get(BaseUrl).then((Response) => {
-    //         setCallToActionData(Response.data)
-    //     })
-    // })    
-
+    const base_url = base_URL() + "call-to-action-data/"
+    const [CallToActionData, setCallToActionData] = React.useState({
+        "title": "",
+        "text": "",
+        "btnText": "",
+        "btnLink": ""
+    })
+    React.useEffect(() => {
+        axios.get(base_url).then((Response) => {
+            setCallToActionData(Response.data[0])
+        })
+    })
 
     return (
         <div className="call-top-action-wrap sp-y">

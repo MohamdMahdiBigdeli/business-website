@@ -1,9 +1,9 @@
 class About():
-    def __init__(self, title, heading, since, Text, btnText, btnLink, thumb):
+    def __init__(self, title, heading, since, text, btnText, btnLink, thumb):
         self.title = title
         self.heading = heading
         self.since = since
-        self.Text = Text
+        self.text = text
         self.btnText = btnText
         self.btnLink = btnLink
         self.thumb = thumb
@@ -61,7 +61,7 @@ class Funfact():
     def __init__(self, id, counterNumber, counteText):
         self.id = id
         self.counterNumber = counterNumber
-        self.counteText = counteText
+        self.counterText = counteText
 
 
 class HowWeWorks():

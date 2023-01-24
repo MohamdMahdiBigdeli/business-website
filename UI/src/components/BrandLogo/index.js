@@ -1,9 +1,19 @@
 import React from 'react';
 import SlickSlider from "../UI/Slick";
 import LogoItem from './LogoItem'
-import BrandLogos from '../../data/BrandLogo/brandlogo'
+// import BrandLogos from '../../data/BrandLogo/brandlogo'
+import axios from 'axios';
+import { base_URL } from "../../helpers/BaseURL"
 
 function BrandLogo(props) {
+    const base_url = base_URL() + "brand-logo-data/"
+    const [BrandLogos, setBrandLogos] = React.useState([])
+    React.useEffect(() => {
+        axios.get(base_url).then((Response) => {
+            setBrandLogos(Response.data)
+        })
+    })
+
     const settings = {
         slidesToShow: 4,
         arrows: false,
@@ -30,6 +40,7 @@ function BrandLogo(props) {
             }
         ]
     };
+
     return (
         <div className="brand-logo-area sm-top">
             <div className="container">
